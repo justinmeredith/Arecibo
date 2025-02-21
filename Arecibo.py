@@ -3,18 +3,22 @@
 
 import random
 
-message_length = 3
-guesses_remaining = 10
+MESSAGE_LENGTH = 3
+TOTAL_GUESSES = 5
 
 def main():
     print('The program is running.')
     secret_message = generateSecretMessage()
     print('The secret message is {}.'.format(secret_message))
 
-    while guesses_remaining > 0:
-        print('Decryption attempt #{}'.format(guesses_remaining))
+    guesses_made = 1
+
+    while guesses_made <= TOTAL_GUESSES:
+        print('Decryption attempt #{}'.format(guesses_made))
         guess = input('> ')
-        guesses_remaining -= 1
+        guesses_made += 1
+    
+    print('You are out of guesses!')
 
 def generateSecretMessage():
     numbers = list('1234567890')
@@ -22,7 +26,7 @@ def generateSecretMessage():
 
     secret_message = ''
 
-    for i in range(message_length):
+    for i in range(MESSAGE_LENGTH):
         secret_message += str(numbers[i])
     return secret_message
 
