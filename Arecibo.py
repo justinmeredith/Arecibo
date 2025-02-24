@@ -13,9 +13,14 @@ def main():
     # the number of guesses available to the user
 
     # Variable for storing guesses made
+    guesses_made = 1
     # Variable that stores the result of calling the generateSecretMessage() function
+    secret_message = generateSecretMessage()
 
     # While loop that accepts user's guesses and terminates when the guesses made equals the guesses allowed by TOTAL_GUESSES
+    while guesses_made <= TOTAL_GUESSES:
+        solve_attempt = input("Encryption Attempt #{}: ".format(guesses_made))
+        print(solve_attempt)
         # Accepts the user's current guess and stores it in a variable
             # The length of the user's guess should be equal to the MESSAGE_LENGTH constant
             # It should only contain integers
@@ -34,6 +39,7 @@ def main():
         # Prints the clues array as a string so the user can decide on their next guess
 
         # Increments the guesses made variable by 1
+        guesses_made += 1
     
     # If the current guess equals the secret message
         # Print a message to the user letting them know that they won the game
