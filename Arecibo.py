@@ -12,10 +12,13 @@ def main():
     # Print a message to the user explaining the rules and lore of the game. Include the length of the secret message and 
     # the number of guesses available to the user
 
+    # Tracks if the user has won the game so that the correct message is printed at the end
+    user_wins = False
     # Variable for storing guesses made
     guesses_made = 1
     # Variable that stores the result of calling the generateSecretMessage() function
     secret_message = generateSecretMessage()
+    print(secret_message)
 
     # While loop that accepts user's guesses and terminates when the guesses made equals the guesses allowed by TOTAL_GUESSES
     while guesses_made <= TOTAL_GUESSES:
@@ -34,10 +37,14 @@ def main():
             else:
                 valid_guess = True
 
-        # If the current guess equals the secret message, break from this while loop
+        # If the current solve attempt is the secret message, break from this while loop, user wins
+        if solve_attempt == secret_message:
+            user_wins = True
+            break
 
         # Empty array that will be used to store the clues gained from the current guess (Prime, Beta, Void)
-            # Should be returned in alphabetical order so that the user does not know which integers line up with each clue
+        clues = clueGenerator(solve_attempt, secret_message)
+        print(clues)
 
         # For loop that runs MESSAGE_LENGTH times
             # Calls a function that checks the user's guess against the generated secret message
@@ -69,19 +76,20 @@ def generateSecretMessage():
     return secret_message
 
 # Checks each integer of the current guess against each integer of the secret message in the same position
-# Accepts the current guess and secret message as parameters
+# Returns the clues as a sorted array to provide feedback without being too specific
+def clueGenerator(solve_attempt, secret_message):
     # Array that will store and return the clues
+    generated_clues = []
 
-    # For MESSAGE_LENGTH times
-        # If current_guess[i] equals secret_message[i]
-            # Append 'Prime' to the clues array
-        # Else if current_guess[i] is in secret_message
-            # Append 'Beta' to the clues array
-        
-        # If clues array has no length (empty)
-            # Return 'Void'
-        # Else
-            # Return array of clues
+    for i in range(MESSAGE_LENGTH):
+        if solve_attempt[i] == secret_message[i]:
+            generated_clues.append('Prime')
+        elif solve_attempt[i] in secret_message:
+            generated_clues.append('Beta')
+        else:
+            generated_clues.append('Void')
+    generated_clues.sort()
+    return generated_clues
 
 # Runs the main loop
 if __name__ == '__main__':
