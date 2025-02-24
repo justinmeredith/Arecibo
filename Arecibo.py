@@ -19,12 +19,20 @@ def main():
 
     # While loop that accepts user's guesses and terminates when the guesses made equals the guesses allowed by TOTAL_GUESSES
     while guesses_made <= TOTAL_GUESSES:
-        solve_attempt = input("Encryption Attempt #{}: ".format(guesses_made))
-        print(solve_attempt)
-        # Accepts the user's current guess and stores it in a variable
-            # The length of the user's guess should be equal to the MESSAGE_LENGTH constant
-            # It should only contain integers
-            # It should be stored as a string
+
+        # Accepts a user's current guess
+        # Also checks if the guess made by the user is acceptable (i.e., does not use too many characters, only integers, etc.)
+        valid_guess = False
+        while valid_guess == False:
+            
+            solve_attempt = input("Encryption Attempt #{}: ".format(guesses_made))
+
+            if len(solve_attempt) != MESSAGE_LENGTH:
+                print('Your decryption can only be {} integers in length, as that is the length of the alien transmission.'.format(MESSAGE_LENGTH))
+            elif solve_attempt.isdecimal() != True:
+                print('Your decryption must consist of integers (0-9) only.')
+            else:
+                valid_guess = True
 
         # If the current guess equals the secret message, break from this while loop
 
