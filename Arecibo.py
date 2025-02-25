@@ -42,15 +42,10 @@ def main():
             user_wins = True
             break
 
-        # Empty array that will be used to store the clues gained from the current guess (Prime, Beta, Void)
+        # Empty array that will be used to store the clues gained from the current guess (Alpha, Beta, Void)
         clues = clueGenerator(solve_attempt, secret_message)
         print(clues)
 
-        # For loop that runs MESSAGE_LENGTH times
-            # Calls a function that checks the user's guess against the generated secret message
-            # Stores the result of that function call (a clue) in the empty clues array
-
-        # Sorts the clues array in alphabetical order to obscure which integer each clue word refers to
         # Prints the clues array as a string so the user can decide on their next guess
 
         # Increments the guesses made variable by 1
@@ -83,13 +78,13 @@ def clueGenerator(solve_attempt, secret_message):
 
     for i in range(MESSAGE_LENGTH):
         if solve_attempt[i] == secret_message[i]:
-            generated_clues.append('Prime')
+            generated_clues.append('Alpha')
         elif solve_attempt[i] in secret_message:
-            generated_clues.append('Beta')
+            generated_clues.append('Omega')
         else:
             generated_clues.append('Void')
     generated_clues.sort()
-    return generated_clues
+    return ' '.join(generated_clues)
 
 # Runs the main loop
 if __name__ == '__main__':
