@@ -5,12 +5,38 @@ import random
 
 # Constants
 MESSAGE_LENGTH = 3
-TOTAL_GUESSES = 5
+TOTAL_GUESSES = 10
 
 # The main loop
 def main():
-    # Print a message to the user explaining the rules and lore of the game. Include the length of the secret message and 
-    # the number of guesses available to the user
+    # Print a message to the user explaining the rules and lore of the game.
+    print("""          ╔═════════════════════════════════════════════════════════════════════════╗
+          ║                       ≡≡ MISSION COMMAND: EARTH ≡≡                      ║
+          ╠═════════════════════════════════════════════════════════════════════════╣
+           Attn. Mockingbird: We've intercepted a signal from deep space...
+           It's unlike anything we've seen before - structured, intelligent, 
+           deliberate. 
+          
+           The world's top minds believe this is a message from an extraterrestrial 
+           civilization. And you are our best chance at deciphering it.
+          
+           This is mission Arecibo, in honor of the signal we once sent to the stars. 
+           Now, it seems, someone has answered. Your job is to decode their message 
+           using our decryption protocol. 
+          
+            Here's what we know so far:
+          
+              * The message is a series of {} integers only. 
+              * Alpha - An integer is correct and in the right place.
+              * Beta - An integer is correct but in the wrong place.
+              * Void - This integer doesn't belong in the message.
+          
+           Proceed carefully. The signal is weak, and we only have enough time for {}
+           attempts. If you succeed, we may establish first contact. If you fail… 
+           we may never get another chance.”
+          
+                                         Good luck. The world is watching.
+          ╚═════════════════════════════════════════════════════════════════════════╝""".format(MESSAGE_LENGTH, TOTAL_GUESSES))
 
     # Tracks if the user has won the game so that the correct message is printed at the end
     user_wins = False
@@ -46,14 +72,27 @@ def main():
         clues = clueGenerator(solve_attempt, secret_message)
         print(clues)
 
-        # Prints the clues array as a string so the user can decide on their next guess
-
         # Increments the guesses made variable by 1
         guesses_made += 1
     
-    # If the current guess equals the secret message
-        # Print a message to the user letting them know that they won the game
-        # Program terminates
+    # If the solve attempt equals the secret message
+    if user_wins == True:
+        print("""              .·°°·..·°°·..·°°·.◈.·°°·..·°°·..·°°·.
+                    ≀≀ TRANSMISSION RECEIVED ≀≀
+              °·..·°°·..·°°·..◈..·°°·..·°°·..·°°·.
+              We have received your communication attempt. 
+              Your collective mind reaches beyond the void.
+              But do you understand?
+
+              You flicker in the dark. You perceive what is
+              hidden. But your light is new.
+
+              For now, we leave you with this:
+
+              We will return. Approach 16. Onlo.
+
+                                        Good bye.
+              °·..·°°·..·°°·..◈..·°°·..·°°·..·°°·.""")
     # Else if the guesses made equals TOTAL_GUESSES
         # Print a message letting the user know they have lost the game
         # Print the secret message. Earth is doomed. 
