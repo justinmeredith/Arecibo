@@ -28,12 +28,12 @@ def main():
           
               * The message is a series of {} integers only. 
               * Alpha - An integer is correct and in the right place.
-              * Beta - An integer is correct but in the wrong place.
+              * Omega - An integer is correct but in the wrong place.
               * Void - This integer doesn't belong in the message.
           
            Proceed carefully. The signal is weak, and we only have enough time for {}
            attempts. If you succeed, we may establish first contact. If you fail… 
-           we may never get another chance.”
+           we may never get another chance.
           
                                          Good luck. The world is watching.
           ╚═════════════════════════════════════════════════════════════════════════╝""".format(MESSAGE_LENGTH, TOTAL_GUESSES))
@@ -54,7 +54,7 @@ def main():
         valid_guess = False
         while valid_guess == False:
             
-            solve_attempt = input("Encryption Attempt #{}: ".format(guesses_made))
+            solve_attempt = input("Decryption Attempt #{}: ".format(guesses_made))
 
             if len(solve_attempt) != MESSAGE_LENGTH:
                 print('Your decryption can only be {} integers in length, as that is the length of the alien transmission.'.format(MESSAGE_LENGTH))
@@ -80,12 +80,14 @@ def main():
         print("""              .·°°·..·°°·..·°°·.◈.·°°·..·°°·..·°°·.
                     ≀≀ TRANSMISSION RECEIVED ≀≀
               °·..·°°·..·°°·..◈..·°°·..·°°·..·°°·.
-              We have received your communication attempt. 
-              Your collective mind reaches beyond the void.
+              We have received your communication 
+              attempt. Your collective mind reaches 
+              beyond the void. 
+              
               But do you understand?
 
-              You flicker in the dark. You perceive what is
-              hidden. But your light is new.
+              You flicker in the dark. You perceive 
+              what is hidden. But your light is new.
 
               For now, we leave you with this:
 
