@@ -1,5 +1,4 @@
-# Ideas: Add a scoring system, apply a sci-fi theme. This is a message coming from alien invaders that the player 
-# needs to decode. Could also add the ability to select a difficulty that changes the number of guesses and characters
+# Ideas: Add the ability to select a difficulty that changes the number of guesses and characters
 
 # Arecibo.py: A simple guessing game.
 # Created by Justin Meredith on February 21st, 2025.
@@ -19,12 +18,37 @@
 
 import random
 
-# Constants
-MESSAGE_LENGTH = 3
-TOTAL_GUESSES = 10
+def difficulty_chooser():
+    print("""Choose your difficulty: 
+    -> Easy
+    -> Medium
+    -> Hard""")
+
+    valid_difficulty = False
+
+    while valid_difficulty != True:
+        difficulty_setting = input('    > ')
+        if difficulty_setting.lower().startswith('e'):
+            print("Easy difficulty selected.")
+            MESSAGE_LENGTH = 3
+            TOTAL_GUESSES = 15
+            valid_difficulty = True
+        elif difficulty_setting.lower().startswith('m'):
+            print("Medium difficulty selected.")
+            MESSAGE_LENGTH = 3
+            TOTAL_GUESSES = 10
+            valid_difficulty = True
+        elif difficulty_setting.lower().startswith('h'):
+            print("Hard difficulty selected.")
+            MESSAGE_LENGTH = 4
+            TOTAL_GUESSES = 10
+            valid_difficulty = True
+        else:
+            print('Type \'easy\', \'medium\', or \'hard\' to choose your difficulty setting.')
 
 # The main loop
 def main():
+
     # Print a message to the user explaining the rules and lore of the game.
     print("""          ╔═════════════════════════════════════════════════════════════════════════╗
           ║                       ≡≡ MISSION COMMAND: EARTH ≡≡                      ║
