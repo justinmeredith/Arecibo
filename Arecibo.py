@@ -44,7 +44,9 @@ def main():
     guesses_made = 1
     # Variable that stores the result of calling the generateSecretMessage() function
     secret_message = generateSecretMessage()
-    print(secret_message)
+
+    # Prints the secret_message for bug testing
+    # print(secret_message)
 
     # While loop that accepts user's guesses and terminates when the guesses made equals the guesses allowed by TOTAL_GUESSES
     while guesses_made <= TOTAL_GUESSES:
@@ -74,7 +76,7 @@ def main():
 
         # Increments the guesses made variable by 1
         guesses_made += 1
-    
+
     # If the solve attempt equals the secret message
     if user_wins == True:
         print("""              .·°°·..·°°·..·°°·.◈.·°°·..·°°·..·°°·.
@@ -95,10 +97,21 @@ def main():
 
                                         Good bye.
               °·..·°°·..·°°·..◈..·°°·..·°°·..·°°·.""")
-    # Else if the guesses made equals TOTAL_GUESSES
-        # Print a message letting the user know they have lost the game
-        # Print the secret message. Earth is doomed. 
-        # Program terminates. 
+    elif guesses_made >= TOTAL_GUESSES:
+        print("""          ╔═════════════════════════════════════════════════════════════════════════╗
+          ║                       ≡≡ MISSION COMMAND: EARTH ≡≡                      ║
+          ╠═════════════════════════════════════════════════════════════════════════╣
+           That... that's it. The terminal has gone dark. We've lost the connection. 
+
+           I don't know what to say. I guess we weren't ready.
+
+           The public cannot know about this. I will reach out when we know our
+           next steps.
+
+           I suppose, for now, we at least have an answer. We are not alone.
+           
+                                                Over and out Mockingbird.
+          ╚═════════════════════════════════════════════════════════════════════════╝""")
 
 # Generates a random sequence of integers equal to the length of the MESSAGE_LENGTH constant
 def generateSecretMessage():
