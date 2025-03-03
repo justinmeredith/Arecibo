@@ -1,6 +1,22 @@
 # Ideas: Add a scoring system, apply a sci-fi theme. This is a message coming from alien invaders that the player 
 # needs to decode. Could also add the ability to select a difficulty that changes the number of guesses and characters
 
+# Arecibo.py: A simple guessing game.
+# Created by Justin Meredith on February 21st, 2025.
+
+# Based on and inpsired by the Bagels.py project from 'The Big Book Of Small Python Projects' by Al Sweigart. 
+# This is a project meant to turn my coding skills into programming skills, as I can read and write code
+# but struggle to build complete projects. I've taken the basic idea of the original game and added a 
+# sci-fi skin on top, inspired by the Arecibo message that was sent in 1974. 
+
+# I recreated Al Sweigart's project with minimal googling or references to the original project by outlining
+# the program in pseudocode comments first. This allowed me to focus on problem-solving rather than syntax while
+# designing the code. I would say that this was the most valuable lesson taken away from this project, as 
+# the program itself was relatively trivial to write out. 
+
+# Thank you for taking the time to explore my progress as I learn more about programming. Again, this is based on
+# an original project by Al Sweigart and is not intended in any way to replace or co-opt his idea.
+
 import random
 
 # Constants
