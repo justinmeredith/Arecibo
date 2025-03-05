@@ -1,7 +1,6 @@
-# Ideas: Add the ability to select a difficulty that changes the number of guesses and characters
-
 # Arecibo.py: A simple guessing game.
 # Created by Justin Meredith on February 21st, 2025.
+# Completed on March 4th, 2025.
 
 # Based on and inpsired by the Bagels.py project from 'The Big Book Of Small Python Projects' by Al Sweigart. 
 # This is a project meant to turn my coding skills into programming skills, as I can read and write code
@@ -18,36 +17,11 @@
 
 import random
 
-def difficulty_chooser():
-    print("""Choose your difficulty: 
-    -> Easy
-    -> Medium
-    -> Hard""")
-
-    valid_difficulty = False
-
-    while valid_difficulty != True:
-        difficulty_setting = input('    > ')
-        if difficulty_setting.lower().startswith('e'):
-            print("Easy difficulty selected.")
-            MESSAGE_LENGTH = 3
-            TOTAL_GUESSES = 15
-            valid_difficulty = True
-        elif difficulty_setting.lower().startswith('m'):
-            print("Medium difficulty selected.")
-            MESSAGE_LENGTH = 3
-            TOTAL_GUESSES = 10
-            valid_difficulty = True
-        elif difficulty_setting.lower().startswith('h'):
-            print("Hard difficulty selected.")
-            MESSAGE_LENGTH = 4
-            TOTAL_GUESSES = 10
-            valid_difficulty = True
-        else:
-            print('Type \'easy\', \'medium\', or \'hard\' to choose your difficulty setting.')
-
 # The main loop
 def main():
+
+    # Sets the difficulty for this run of the game
+    message_length, total_guesses = difficulty_chooser()
 
     # Print a message to the user explaining the rules and lore of the game.
     print("""          ╔═════════════════════════════════════════════════════════════════════════╗
@@ -76,20 +50,20 @@ def main():
            we may never get another chance.
           
                                          Good luck. The world is watching.
-          ╚═════════════════════════════════════════════════════════════════════════╝""".format(MESSAGE_LENGTH, TOTAL_GUESSES))
+          ╚═════════════════════════════════════════════════════════════════════════╝""".format(message_length, total_guesses))
 
     # Tracks if the user has won the game so that the correct message is printed at the end
     user_wins = False
     # Variable for storing guesses made
     guesses_made = 1
     # Variable that stores the result of calling the generateSecretMessage() function
-    secret_message = generateSecretMessage()
+    secret_message = generateSecretMessage(message_length)
 
     # Prints the secret_message for bug testing
     # print(secret_message)
 
-    # While loop that accepts user's guesses and terminates when the guesses made equals the guesses allowed by TOTAL_GUESSES
-    while guesses_made <= TOTAL_GUESSES:
+    # While loop that accepts user's guesses and terminates when the guesses made equals the guesses allowed by total_guesses
+    while guesses_made <= total_guesses:
 
         # Accepts a user's current guess
         # Also checks if the guess made by the user is acceptable (i.e., does not use too many characters, only integers, etc.)
@@ -98,8 +72,8 @@ def main():
             
             solve_attempt = input("Decryption Attempt #{}: ".format(guesses_made))
 
-            if len(solve_attempt) != MESSAGE_LENGTH:
-                print('Your decryption can only be {} integers in length, as that is the length of the alien transmission.'.format(MESSAGE_LENGTH))
+            if len(solve_attempt) != message_length:
+                print('Your decryption can only be {} integers in length, as that is the length of the alien transmission.'.format(message_length))
             elif solve_attempt.isdecimal() != True:
                 print('Your decryption must consist of integers (0-9) only.')
             else:
@@ -111,7 +85,7 @@ def main():
             break
 
         # Empty array that will be used to store the clues gained from the current guess (Alpha, Beta, Void)
-        clues = clueGenerator(solve_attempt, secret_message)
+        clues = clueGenerator(solve_attempt, secret_message, message_length)
         print(clues)
 
         # Increments the guesses made variable by 1
@@ -137,7 +111,8 @@ def main():
 
                                         Good bye.
               °·..·°°·..·°°·..◈..·°°·..·°°·..·°°·.""")
-    elif guesses_made >= TOTAL_GUESSES:
+    # If the user has run out of guesses and did not guess the secret message
+    elif guesses_made >= total_guesses:
         print("""          ╔═════════════════════════════════════════════════════════════════════════╗
           ║                       ≡≡ MISSION COMMAND: EARTH ≡≡                      ║
           ╠═════════════════════════════════════════════════════════════════════════╣
@@ -152,25 +127,57 @@ def main():
            
                                                 Over and out Mockingbird.
           ╚═════════════════════════════════════════════════════════════════════════╝""")
+        
+# Allows the user to choose a difficulty for the challenge, with 'Medium' being the difficulty established in the
+# original Bagels.py project by Al Sweigart.
+def difficulty_chooser():
+    print("""Choose your difficulty: 
+    -> Easy
+    -> Medium
+    -> Hard""")
 
-# Generates a random sequence of integers equal to the length of the MESSAGE_LENGTH constant
-def generateSecretMessage():
+    valid_difficulty = False
+
+    while valid_difficulty != True:
+        difficulty_setting = input('    > ')
+        if difficulty_setting.lower().startswith('e'):
+            print("Easy difficulty selected.")
+            message_length = 3
+            total_guesses = 15
+            valid_difficulty = True
+        elif difficulty_setting.lower().startswith('m'):
+            print("Medium difficulty selected.")
+            message_length = 3
+            total_guesses = 10
+            valid_difficulty = True
+        elif difficulty_setting.lower().startswith('h'):
+            print("Hard difficulty selected.")
+            message_length = 4
+            total_guesses = 10
+            valid_difficulty = True
+        else:
+            print('Type \'easy\', \'medium\', or \'hard\' to choose your difficulty setting.')
+
+    return message_length, total_guesses
+
+# Generates a random sequence of integers equal to the length of the message_length variable
+def generateSecretMessage(message_length):
     numbers = list('1234567890')
     random.shuffle(numbers)
 
     secret_message = ''
 
-    for i in range(MESSAGE_LENGTH):
+    for i in range(message_length):
         secret_message += str(numbers[i])
     return secret_message
 
 # Checks each integer of the current guess against each integer of the secret message in the same position
 # Returns the clues as a sorted array to provide feedback without being too specific
-def clueGenerator(solve_attempt, secret_message):
+def clueGenerator(solve_attempt, secret_message, message_length):
     # Array that will store and return the clues
     generated_clues = []
 
-    for i in range(MESSAGE_LENGTH):
+    for i in range(message_length):
         if solve_attempt[i] == secret_message[i]:
             generated_clues.append('Alpha')
         elif solve_attempt[i] in secret_message:
