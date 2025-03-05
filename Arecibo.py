@@ -23,7 +23,7 @@ def main():
     # Sets the difficulty for this run of the game
     message_length, total_guesses = difficulty_chooser()
 
-    # Print a message to the user explaining the rules and lore of the game.
+    # Prints a message to the user explaining the rules and lore of the game.
     print("""          ╔═════════════════════════════════════════════════════════════════════════╗
           ║                       ≡≡ MISSION COMMAND: EARTH ≡≡                      ║
           ╠═════════════════════════════════════════════════════════════════════════╣
