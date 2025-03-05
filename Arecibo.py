@@ -2,7 +2,7 @@
 # Created by Justin Meredith on February 21st, 2025.
 # Completed on March 4th, 2025.
 
-# Based on and inpsired by the Bagels.py project from 'The Big Book Of Small Python Projects' by Al Sweigart. 
+# Based on and inspired by the Bagels.py project from 'The Big Book Of Small Python Projects' by Al Sweigart. 
 # This is a project meant to turn my coding skills into programming skills, as I can read and write code
 # but struggle to build complete projects. I've taken the basic idea of the original game and added a 
 # sci-fi skin on top, inspired by the Arecibo message that was sent in 1974. 
